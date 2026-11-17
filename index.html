@@ -8,6 +8,9 @@
 <meta property="og:title" content="Nilum Ludo">
 <meta property="og:description" content="Ludo with friends — online rooms, live chat, vs computer. Free Android APK.">
 <meta name="theme-color" content="#2a1a5e">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta property="og:image" content="icon-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@400;600;800&display=swap">
@@ -44,6 +47,8 @@ h1, h2 { font-family: var(--display); text-wrap: balance; margin: 0; line-height
 .hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; }
 .hero > * { min-width: 0; }
 .brand { font-family: var(--display); font-weight: 800; letter-spacing: 0.02em; }
+.appicon { width: 76px; height: 76px; border-radius: 18px; display: block; margin-bottom: 14px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35); }
 .brand .n { color: var(--gold); font-size: clamp(2.4rem, 7vw, 3.6rem); display: block; line-height: 0.9; }
 .brand .l { font-size: clamp(3.2rem, 10vw, 5rem); display: block; line-height: 0.95; letter-spacing: 0.12em;
   text-shadow: 0 5px 0 rgba(0,0,0,0.35); }
@@ -103,13 +108,14 @@ footer { color: var(--muted); font-size: 0.85rem; text-align: center; }
 <main class="wrap">
   <header class="hero">
     <div>
+      <img class="appicon" src="icon-192.png" width="76" height="76" alt="Nilum Ludo app icon">
       <h1 class="brand"><span class="n">Nilum</span><span class="l">LUDO</span></h1>
       <p class="pitch">Ludo with your friends. Make a room, share the code, and play with live chat. Or play the computer when nobody's around.</p>
       <a class="dl" href="https://github.com/monsur2003/nilum-ludo/releases/latest/download/nilum-ludo.apk" id="download">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3a1.5 1.5 0 0 1 1.5 1.5v8.38l2.44-2.44a1.5 1.5 0 1 1 2.12 2.12l-5 5a1.5 1.5 0 0 1-2.12 0l-5-5a1.5 1.5 0 1 1 2.12-2.12l2.44 2.44V4.5A1.5 1.5 0 0 1 12 3Zm-7 16h14a1.5 1.5 0 0 1 0 3H5a1.5 1.5 0 0 1 0-3Z"/></svg>
         Download for Android
       </a>
-      <div class="meta">Version <b>1.1.0</b> · <b>32.7 MB</b> · Android 6.0 or newer · Free, no ads, no coins</div>
+      <div class="meta">Version <b>1.1.1</b> · <b>33.5 MB</b> · Android 6.0 or newer · Free, no ads, no coins</div>
     </div>
     <canvas class="board" id="board" width="600" height="600" role="img" aria-label="A Ludo board with tokens"></canvas>
   </header>

@@ -1,0 +1,11 @@
+{
+  "version": "1.1.1",
+  "build": 3,
+  "apk": "https://github.com/monsur2003/nilum-ludo/releases/download/v1.1.1/nilum-ludo.apk",
+  "size": 35156295,
+  "notes": [
+    "Cleaner dice: the number faces you, big and easy to read",
+    "New app icon: a Ludo board",
+    "Updates now come inside the game: you'll get an 'Update available' message, or use Settings \u2192 Check for updates"
+  ]
+}
