@@ -109,7 +109,7 @@ footer { color: var(--muted); font-size: 0.85rem; text-align: center; }
         <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3a1.5 1.5 0 0 1 1.5 1.5v8.38l2.44-2.44a1.5 1.5 0 1 1 2.12 2.12l-5 5a1.5 1.5 0 0 1-2.12 0l-5-5a1.5 1.5 0 1 1 2.12-2.12l2.44 2.44V4.5A1.5 1.5 0 0 1 12 3Zm-7 16h14a1.5 1.5 0 0 1 0 3H5a1.5 1.5 0 0 1 0-3Z"/></svg>
         Download for Android
       </a>
-      <div class="meta">Version <b>1.0.0</b> · <b>32.9 MB</b> · Android 6.0 or newer · Free, no ads, no coins</div>
+      <div class="meta">Version <b>1.1.0</b> · <b>32.7 MB</b> · Android 6.0 or newer · Free, no ads, no coins</div>
     </div>
     <canvas class="board" id="board" width="600" height="600" role="img" aria-label="A Ludo board with tokens"></canvas>
   </header>
@@ -186,12 +186,32 @@ footer { color: var(--muted); font-size: 0.85rem; text-align: center; }
   token(6.5 * u, 10.5 * u, 0); token(2.5 * u, 6.5 * u, 1); token(8.5 * u, 3.5 * u, 2); token(12.5 * u, 8.5 * u, 3);
   g.strokeStyle = '#5d4037'; g.lineWidth = u * .2; g.strokeRect(0, 0, S, S);
   function fill(x, y, i) { g.fillStyle = col[i]; g.fillRect(x * u, y * u, u, u); g.strokeRect(x * u, y * u, u, u); }
+  // 3D pawn (ghuti), same shape as in the app: base disc, bell body, collar, glossy head.
   function token(x, y, i) {
-    var R = u * .36; y -= u * .1;
-    g.fillStyle = 'rgba(0,0,0,.25)'; g.beginPath(); g.ellipse(x, y + u * .4, R * .9, R * .25, 0, 0, 7); g.fill();
-    g.fillStyle = '#333'; g.beginPath(); g.arc(x, y, R, 0, 7); g.fill();
-    g.fillStyle = '#fff'; g.beginPath(); g.arc(x, y, R * .86, 0, 7); g.fill();
-    g.fillStyle = col[i]; g.beginPath(); g.arc(x, y, R * .62, 0, 7); g.fill();
+    var D = ['#b71c1c', '#1b7a31', '#e0a000', '#0d5bb5'][i], L = ['#f29a98', '#97dca8', '#ffe08f', '#93c5f3'][i];
+    var E = ['#7a1212', '#124f20', '#8f6600', '#083b75'][i], B = col[i];
+    var w = u * 1.5, cx = x, top = y + u * .28 - w * .9;
+    function Y(f) { return top + w * f; }
+    function grad(x0, x1, stops) { var lg = g.createLinearGradient(x0, 0, x1, 0); stops.forEach(function (s) { lg.addColorStop(s[0], s[1]); }); return lg; }
+    g.lineWidth = Math.max(1, w * .018); g.strokeStyle = E;
+    g.fillStyle = 'rgba(0,0,0,.35)'; g.beginPath(); g.ellipse(cx, Y(.88), w * .25, w * .08, 0, 0, 7); g.fill();
+    g.fillStyle = E; g.beginPath(); g.ellipse(cx, Y(.86), w * .28, w * .085, 0, 0, 7); g.fill();
+    g.fillStyle = D; g.fillRect(cx - w * .28, Y(.815), w * .56, w * .045);
+    g.fillStyle = grad(cx - w * .28, cx + w * .28, [[0, D], [.35, L], [.6, B], [1, D]]);
+    g.beginPath(); g.ellipse(cx, Y(.815), w * .28, w * .085, 0, 0, 7); g.fill(); g.stroke();
+    g.beginPath(); g.moveTo(cx - w * .2, Y(.81));
+    g.bezierCurveTo(cx - w * .19, Y(.66), cx - w * .07, Y(.6), cx - w * .07, Y(.47));
+    g.lineTo(cx + w * .07, Y(.47));
+    g.bezierCurveTo(cx + w * .07, Y(.6), cx + w * .19, Y(.66), cx + w * .2, Y(.81));
+    g.quadraticCurveTo(cx, Y(.86), cx - w * .2, Y(.81)); g.closePath();
+    g.fillStyle = grad(cx - w * .2, cx + w * .2, [[0, D], [.28, B], [.42, L], [.7, B], [1, D]]); g.fill(); g.stroke();
+    g.fillStyle = grad(cx - w * .135, cx + w * .135, [[0, D], [.5, L], [1, D]]);
+    g.beginPath(); g.ellipse(cx, Y(.475), w * .135, w * .042, 0, 0, 7); g.fill(); g.stroke();
+    var hr = w * .165, hy = Y(.32);
+    var rg = g.createRadialGradient(cx - hr * .35, hy - hr * .45, hr * .05, cx, hy, hr);
+    rg.addColorStop(0, '#fff'); rg.addColorStop(.15, L); rg.addColorStop(.55, B); rg.addColorStop(1, D);
+    g.fillStyle = rg; g.beginPath(); g.arc(cx, hy, hr, 0, 7); g.fill(); g.stroke();
+    g.fillStyle = 'rgba(255,255,255,.85)'; g.beginPath(); g.ellipse(cx - hr * .38, hy - hr * .45, hr * .27, hr * .17, 0, 0, 7); g.fill();
   }
 })();
 </script>
