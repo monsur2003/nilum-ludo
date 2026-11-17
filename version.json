@@ -1,11 +1,11 @@
 {
-  "version": "1.1.3",
-  "build": 5,
-  "apk": "https://github.com/monsur2003/nilum-ludo/releases/download/v1.1.3/nilum-ludo.apk",
+  "version": "1.1.4",
+  "build": 6,
+  "apk": "https://github.com/monsur2003/nilum-ludo/releases/download/v1.1.4/nilum-ludo.apk",
   "size": 35130147,
   "notes": [
-    "Extra luck on 6: a six now comes up twice as often, the same for every player",
+    "A little extra luck on 6: a six now comes up 20% of the time (normal dice: 16.7%), the same for every player",
     "Fixed: sounds sometimes not playing",
-    "New ghuti step sound: a wooden tok on every hop"
+    "Wooden tok sound on every ghuti step"
   ]
 }
