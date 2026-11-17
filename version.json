@@ -1,9 +1,10 @@
 {
-  "version": "1.1.5",
-  "build": 7,
-  "apk": "https://github.com/monsur2003/nilum-ludo/releases/download/v1.1.5/nilum-ludo.apk",
+  "version": "1.1.6",
+  "build": 8,
+  "apk": "https://github.com/monsur2003/nilum-ludo/releases/download/v1.1.6/nilum-ludo.apk",
   "size": 35130147,
   "notes": [
-    "More luck on 6: a six now comes up on 30% of rolls (normal dice: 16.7%), the same for every player"
+    "More cutting: about 30% more cuts per game, the same luck for every player",
+    "6 still comes up on 30% of rolls"
   ]
 }
