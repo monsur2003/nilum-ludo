@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nilum Ludo</title>
+<meta name="description" content="Play Ludo with your friends: online rooms with live chat, vs computer, or pass & play. Free Android download.">
+<meta property="og:title" content="Nilum Ludo">
+<meta property="og:description" content="Ludo with friends — online rooms, live chat, vs computer. Free Android APK.">
+<meta name="theme-color" content="#2a1a5e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@400;600;800&display=swap">
+<style>
+/* Layout: one narrow phone-first column; the board illustration sits beside the
+   pitch on wide screens and above it on phones. Single dark look, like the app. */
+:root {
+  color-scheme: dark;
+  --ink: #2a1a5e;        /* page ground: the app's night purple */
+  --ink-2: #3a2475;      /* raised panels */
+  --line: #5a44a0;
+  --text: #f4f0ff;
+  --muted: #c3b8e6;
+  --gold: #ffd54f;       /* logo yellow, the one accent */
+  --red: #e53935; --green: #2eb34a; --yellow: #ffc107; --blue: #1e88e5;
+  --display: "Baloo 2", "Arial Rounded MT Bold", system-ui, sans-serif;
+  --body: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--ink);
+  background-image: radial-gradient(circle at 15% 10%, #4a2c8f 0, transparent 45%),
+                    radial-gradient(circle at 90% 80%, #3b2380 0, transparent 40%);
+  color: var(--text);
+  font: 17px/1.55 var(--body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: max(24px, env(safe-area-inset-top, 0px)) max(32px, env(safe-area-inset-bottom, 0px));
+}
+.wrap { max-width: 980px; margin: 0 auto; display: grid; gap: 56px; }
+h1, h2 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.05; }
+
+.hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; }
+.hero > * { min-width: 0; }
+.brand { font-family: var(--display); font-weight: 800; letter-spacing: 0.02em; }
+.brand .n { color: var(--gold); font-size: clamp(2.4rem, 7vw, 3.6rem); display: block; line-height: 0.9; }
+.brand .l { font-size: clamp(3.2rem, 10vw, 5rem); display: block; line-height: 0.95; letter-spacing: 0.12em;
+  text-shadow: 0 5px 0 rgba(0,0,0,0.35); }
+.pitch { color: var(--muted); font-size: 1.15rem; max-width: 34ch; margin: 18px 0 26px; }
+
+.dl { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: #fff;
+  font: 800 1.3rem/1 var(--display); padding: 18px 28px 16px; border-radius: 20px;
+  background: linear-gradient(#4cc865, var(--green)); box-shadow: 0 6px 0 #1b7a31, 0 12px 24px rgba(0,0,0,0.35);
+  border: 2px solid rgba(255,255,255,0.35); transition: transform .08s, box-shadow .08s; }
+.dl:hover { filter: brightness(1.05); }
+.dl:active { transform: translateY(6px); box-shadow: 0 0 0 #1b7a31, 0 6px 12px rgba(0,0,0,0.3); }
+.dl:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+.dl svg { width: 26px; height: 26px; flex: none; }
+.meta { margin-top: 14px; color: var(--muted); font-size: 0.9rem; font-variant-numeric: tabular-nums; }
+.meta b { color: var(--text); }
+
+.board { width: 100%; max-width: 360px; aspect-ratio: 1; justify-self: center; border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.45); transform: rotate(-4deg); }
+
+section h2 { font-size: clamp(1.7rem, 4.5vw, 2.2rem); margin-bottom: 18px; }
+.steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; counter-reset: s; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: start;
+  background: var(--ink-2); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; }
+.steps li::before { content: counter(s); font: 800 1.3rem/44px var(--display); text-align: center;
+  width: 44px; height: 44px; border-radius: 50%; color: #fff; }
+.steps li:nth-child(1)::before { background: var(--red); }
+.steps li:nth-child(2)::before { background: var(--green); }
+.steps li:nth-child(3)::before { background: var(--yellow); color: #3a2a00; }
+.steps li:nth-child(4)::before { background: var(--blue); }
+.steps b { display: block; font-size: 1.05rem; }
+.steps span { color: var(--muted); }
+
+.modes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.mode { padding: 18px; border-radius: 16px; background: var(--ink-2); border: 1px solid var(--line); min-width: 0; }
+.mode h3 { font: 800 1.25rem/1.1 var(--display); margin: 0 0 6px; }
+.mode p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+.dots { display: flex; gap: 5px; margin-bottom: 10px; }
+.dots i { width: 14px; height: 14px; border-radius: 50%; display: block; }
+
+.facts { display: flex; flex-wrap: wrap; gap: 10px; }
+.facts span { padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; }
+
+.code { display: inline-block; font: 800 1.6rem/1 var(--display); letter-spacing: 0.18em; color: var(--gold);
+  background: rgba(0,0,0,0.25); padding: 10px 16px 6px; border-radius: 12px; }
+footer { color: var(--muted); font-size: 0.85rem; text-align: center; }
+
+@media (max-width: 720px) {
+  .hero { grid-template-columns: 1fr; gap: 28px; }
+  .board { order: -1; max-width: 240px; }
+  .modes { grid-template-columns: 1fr; }
+  .wrap { gap: 44px; }
+}
+@media (prefers-reduced-motion: reduce) { .dl { transition: none; } }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="hero">
+    <div>
+      <h1 class="brand"><span class="n">Nilum</span><span class="l">LUDO</span></h1>
+      <p class="pitch">Ludo with your friends. Make a room, share the code, and play with live chat. Or play the computer when nobody's around.</p>
+      <a class="dl" href="https://github.com/monsur2003/nilum-ludo/releases/latest/download/nilum-ludo.apk" id="download">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3a1.5 1.5 0 0 1 1.5 1.5v8.38l2.44-2.44a1.5 1.5 0 1 1 2.12 2.12l-5 5a1.5 1.5 0 0 1-2.12 0l-5-5a1.5 1.5 0 1 1 2.12-2.12l2.44 2.44V4.5A1.5 1.5 0 0 1 12 3Zm-7 16h14a1.5 1.5 0 0 1 0 3H5a1.5 1.5 0 0 1 0-3Z"/></svg>
+        Download for Android
+      </a>
+      <div class="meta">Version <b>__VERSION__</b> · <b>__SIZE__</b> · Android 6.0 or newer · Free, no ads, no coins</div>
+    </div>
+    <canvas class="board" id="board" width="600" height="600" role="img" aria-label="A Ludo board with tokens"></canvas>
+  </header>
+
+  <section>
+    <h2>Install in a minute</h2>
+    <ol class="steps">
+      <li><div><b>Tap Download</b><span>Your phone saves <code>nilum-ludo.apk</code>. Chrome may warn that the file can be harmful. Tap Download anyway.</span></div></li>
+      <li><div><b>Open the file</b><span>Open it from the download notification or the Files app.</span></div></li>
+      <li><div><b>Allow this install</b><span>Android asks you to allow installs from your browser or Files app the first time. Turn on "Allow from this source", then go back.</span></div></li>
+      <li><div><b>Install and play</b><span>Tap Install, open Nilum Ludo, and pick your name and avatar.</span></div></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Three ways to play</h2>
+    <div class="modes">
+      <div class="mode">
+        <div class="dots"><i style="background:var(--red)"></i><i style="background:var(--yellow)"></i></div>
+        <h3>1 vs 1</h3><p>Red against Yellow, head to head.</p>
+      </div>
+      <div class="mode">
+        <div class="dots"><i style="background:var(--red)"></i><i style="background:var(--yellow)"></i><i style="background:var(--green)"></i><i style="background:var(--blue)"></i></div>
+        <h3>2 vs 2 Teams</h3><p>Red &amp; Yellow against Green &amp; Blue. Finish first and you move your partner's tokens.</p>
+      </div>
+      <div class="mode">
+        <div class="dots"><i style="background:var(--red)"></i><i style="background:var(--green)"></i><i style="background:var(--yellow)"></i><i style="background:var(--blue)"></i></div>
+        <h3>4 Players</h3><p>Everyone for themselves.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Playing with friends</h2>
+    <p class="pitch" style="margin-top:0">Tap <b>Play Online → Create Room</b>. You get a code like <span class="code">NL4K9P</span>. Send it on WhatsApp or Messenger. Friends tap <b>Join Room</b>, type the code, and show up in your lobby.</p>
+    <div class="facts">
+      <span>Live chat &amp; stickers</span><span>Team chat in 2v2</span><span>20-second turns</span>
+      <span>Bot covers disconnects</span><span>Vs computer offline</span><span>Pass &amp; Play</span>
+    </div>
+  </section>
+
+  <footer>Nilum Ludo · made for friends · © 2026</footer>
+</main>
+<script>
+// Draws a small Ludo board on the canvas.
+(function () {
+  var c = document.getElementById('board'); if (!c || !c.getContext) return;
+  var g = c.getContext('2d'), S = c.width, u = S / 15;
+  var col = ['#e53935', '#2eb34a', '#ffc107', '#1e88e5'];
+  var bases = [[0, 9], [0, 0], [9, 0], [9, 9]];
+  g.fillStyle = '#fff'; g.fillRect(0, 0, S, S);
+  bases.forEach(function (b, i) {
+    g.fillStyle = col[i]; g.fillRect(b[0] * u, b[1] * u, 6 * u, 6 * u);
+    g.fillStyle = '#fff'; g.beginPath(); g.roundRect ? g.roundRect(b[0] * u + u * .8, b[1] * u + u * .8, u * 4.4, u * 4.4, u * .6) : g.rect(b[0] * u + u * .8, b[1] * u + u * .8, u * 4.4, u * 4.4); g.fill();
+    [[2, 2], [4, 2], [2, 4], [4, 4]].forEach(function (s, k) {
+      var x = (b[0] + s[0]) * u, y = (b[1] + s[1]) * u;
+      g.fillStyle = col[i]; g.globalAlpha = .25; g.beginPath(); g.arc(x, y, u * .62, 0, 7); g.fill(); g.globalAlpha = 1;
+      if (k < 3) token(x, y, i);
+    });
+  });
+  g.strokeStyle = '#9e9e9e'; g.lineWidth = 1.2;
+  for (var r = 0; r < 15; r++) for (var q = 0; q < 15; q++) {
+    var arm = (q >= 6 && q <= 8) !== (r >= 6 && r <= 8);
+    if (arm) g.strokeRect(q * u, r * u, u, u);
+  }
+  for (var k = 1; k <= 5; k++) {
+    fill(7, 14 - k, 0); fill(k, 7, 1); fill(7, k, 2); fill(14 - k, 7, 3);
+  }
+  fill(6, 13, 0); fill(1, 6, 1); fill(8, 1, 2); fill(13, 8, 3);
+  var tri = [[[6, 9], [9, 9]], [[6, 6], [6, 9]], [[6, 6], [9, 6]], [[9, 6], [9, 9]]];
+  tri.forEach(function (t, i) {
+    g.fillStyle = col[i]; g.beginPath(); g.moveTo(t[0][0] * u, t[0][1] * u); g.lineTo(t[1][0] * u, t[1][1] * u); g.lineTo(7.5 * u, 7.5 * u); g.fill();
+  });
+  token(6.5 * u, 10.5 * u, 0); token(2.5 * u, 6.5 * u, 1); token(8.5 * u, 3.5 * u, 2); token(12.5 * u, 8.5 * u, 3);
+  g.strokeStyle = '#5d4037'; g.lineWidth = u * .2; g.strokeRect(0, 0, S, S);
+  function fill(x, y, i) { g.fillStyle = col[i]; g.fillRect(x * u, y * u, u, u); g.strokeRect(x * u, y * u, u, u); }
+  function token(x, y, i) {
+    var R = u * .36; y -= u * .1;
+    g.fillStyle = 'rgba(0,0,0,.25)'; g.beginPath(); g.ellipse(x, y + u * .4, R * .9, R * .25, 0, 0, 7); g.fill();
+    g.fillStyle = '#333'; g.beginPath(); g.arc(x, y, R, 0, 7); g.fill();
+    g.fillStyle = '#fff'; g.beginPath(); g.arc(x, y, R * .86, 0, 7); g.fill();
+    g.fillStyle = col[i]; g.beginPath(); g.arc(x, y, R * .62, 0, 7); g.fill();
+  }
+})();
+</script>
+</body>
+</html>
