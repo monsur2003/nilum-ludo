@@ -1,10 +1,11 @@
 {
-  "version": "1.1.6",
-  "build": 8,
-  "apk": "https://github.com/monsur2003/nilum-ludo/releases/download/v1.1.6/nilum-ludo.apk",
-  "size": 35130147,
+  "version": "1.2.0",
+  "build": 9,
+  "apk": "https://github.com/monsur2003/nilum-ludo/releases/download/v1.2.0/nilum-ludo.apk",
+  "size": 35179687,
   "notes": [
-    "More cutting: about 30% more cuts per game, the same luck for every player",
-    "6 still comes up on 30% of rolls"
+    "Invite friends: see who is online right now (Play Online \u2192 Active now)",
+    "Challenge a friend in one tap, or tap Invite in the lobby",
+    "Invites pop up anywhere in the game: Join or Decline"
   ]
 }
