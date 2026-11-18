@@ -1,11 +1,12 @@
 {
-  "version": "1.2.0",
-  "build": 9,
-  "apk": "https://github.com/monsur2003/nilum-ludo/releases/download/v1.2.0/nilum-ludo.apk",
-  "size": 35179687,
+  "version": "1.2.1",
+  "build": 10,
+  "apk": "https://github.com/monsur2003/nilum-ludo/releases/download/v1.2.1/nilum-ludo.apk",
+  "size": 35261735,
   "notes": [
-    "Invite friends: see who is online right now (Play Online \u2192 Active now)",
-    "Challenge a friend in one tap, or tap Invite in the lobby",
-    "Invites pop up anywhere in the game: Join or Decline"
+    "Online games: your corner and dice are always at the bottom",
+    "Alerts like 'Captured! Bonus roll' now show at the top, not over the board",
+    "New chat bar at the bottom shows the latest message; tap it to chat",
+    "Chat looks like a messenger: your messages right, friends left"
   ]
 }
