@@ -1,12 +1,11 @@
 {
-  "version": "1.2.1",
-  "build": 10,
-  "apk": "https://github.com/monsur2003/nilum-ludo/releases/download/v1.2.1/nilum-ludo.apk",
-  "size": 35261735,
+  "version": "1.3.0",
+  "build": 11,
+  "apk": "https://github.com/monsur2003/nilum-ludo/releases/download/v1.3.0/nilum-ludo.apk",
+  "size": 60337300,
   "notes": [
-    "Online games: your corner and dice are always at the bottom",
-    "Alerts like 'Captured! Bonus roll' now show at the top, not over the board",
-    "New chat bar at the bottom shows the latest message; tap it to chat",
-    "Chat looks like a messenger: your messages right, friends left"
+    "Live voice chat in online rooms: tap the green headset to join, then talk",
+    "Mic on/off, speaker on/off and leave buttons at the bottom; a headset badge shows who is in voice and a green ring shows who is talking",
+    "Voice works in the lobby and during the game"
   ]
 }
